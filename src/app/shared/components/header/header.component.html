@@ -1,0 +1,34 @@
+<mat-toolbar class="main-header">
+  <div>
+    <h1>Dashboard</h1>
+    <!-- <app-breadcum></app-breadcum> -->
+  </div>
+  <div>
+    <div class="demo-section">
+
+      <div  
+        class="profile menu-btn"
+        [matMenuTriggerFor]="menu"
+      >
+        A
+      </div>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          routerLink="/dashboard/profile"
+        >
+          Profile
+        </button>
+        <button
+          mat-menu-item
+          routerLink="/change-password"
+        >
+          Change Password
+        </button>
+        <button
+          mat-menu-item
+        >Logout</button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>

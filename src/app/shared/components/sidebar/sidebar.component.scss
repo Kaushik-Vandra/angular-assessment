@@ -1,0 +1,107 @@
+.small-logo {
+  width: 36px;
+  height: 28px;
+  display: inline-block;
+  margin: 30px 0;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.add-icon {
+  background-color: transparent;
+  border: none;
+  min-width: 70px;
+  padding: 0 !important;
+}
+
+.expanded-arrow {
+  position: absolute;
+  top: 0;
+  right: -13px;
+  background: #ffffff;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .menu-icon,
+  .close-icon {
+    display: none;
+  }
+}
+.big-logo {
+  width: 180px;
+  height: 28px;
+  margin: 30px 0;
+  display: inline-block;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.mat-btn {
+  width: 200px;
+  background-color: transparent;
+  border: 1px solid #ffa02f;
+  border-radius: 24px;
+  color: #ffa02f;
+  font-size: 14px;
+  &:hover {
+    background-color: #ffa02f;
+    color: #ffffff;
+  }
+}
+
+.expanded-arrow {
+  position: absolute;
+  top: 22px;
+  right: -10px;
+  cursor: pointer;
+}
+.mat-list-active {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+@media only screen and (max-width: 1199px) {
+  .expanded-arrow {
+    position: fixed;
+    left: 240px;
+    right: auto;
+    top: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 0 10px 10px 0;
+    display: none;
+    .chevron-button {
+      display: none;
+    }
+    .menu-icon {
+      display: flex;
+    }
+  }
+  ::ng-deep {
+    .explanded {
+      .expanded-arrow {
+        top: 22px;
+        left: 15px;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        width: 21px;
+        height: 21px;
+        display: flex;
+      }
+    }
+  }
+}
+
+div a{
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+}

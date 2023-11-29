@@ -1,0 +1,22 @@
+<mat-sidenav-container
+  autosize
+  [hasBackdrop]="false"
+  [ngClass]="!sideBar.isExpanded ? 'explanded': '' "
+>
+  <mat-sidenav
+    mode="side"
+    disableClose
+    [opened]="true"
+    id="sidebar-container"
+  >
+    <mat-nav-list>
+      <app-sidebar #sideBar></app-sidebar>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-header class="fix-header"></app-header>
+    <div class="main-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,55 @@
+<div style="text-align: center;">
+    <a
+      routerLink="/"
+      class="big-logo"
+      *ngIf="isExpanded"
+    >
+     <span>Admin Panel</span>
+    </a>
+    <a
+      routerLink="/dashboard"
+      class="small-logo"
+      *ngIf="!isExpanded"
+    >
+    <span>Admin Panel</span>
+    </a>
+  </div>
+  
+  <div
+    class="expanded-arrow"
+    (click)="toggleExpanded()"
+  >
+    <mat-icon
+      mat-list-icon
+      class="chevron-button"
+      [ngClass]="{ rotated: isExpanded }"
+    >
+      chevron_right
+    </mat-icon>
+    <span class="menu-icon"><mat-icon>view_headline</mat-icon></span>
+  </div>
+  
+  <!--  -->
+  <div *ngFor="let m of menu">
+    <mat-list-item
+      [disableRipple]="true"
+      [routerLink]="m.route"
+      [routerLinkActive]="'mat-active'"
+      [routerLinkActiveOptions]="{exact: m.name == HOME_MENU_TITLE ? true : false}"
+      (click)="toggleSidebar()"
+    >
+      <mat-icon
+        mat-list-icon
+        [fontIcon]="m.icon"
+        [matTooltip]="!isExpanded ? m.name : ''"
+        [matTooltipPosition]="'left'"
+      >
+      </mat-icon>
+      <span
+        *ngIf="isExpanded"
+        class="menu-item"
+      >
+        {{m.name}}
+      </span>
+    </mat-list-item>
+  </div>  

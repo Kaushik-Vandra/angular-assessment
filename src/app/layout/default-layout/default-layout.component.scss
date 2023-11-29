@@ -1,0 +1,73 @@
+::ng-deep {
+  .mat-sidenav {
+    overflow: visible !important;
+  }
+  .mat-drawer-inner-container {
+    overflow: hidden !important;
+  }
+}
+
+.main-wrapper {
+  padding: 90px 30px 20px 30px;
+  background-color: #f8f8f8;
+  min-height: calc(100vh - 65px);
+}
+
+.fix-header {
+  position: fixed;
+  width: calc(100% - 202px);
+  top: 0;
+  left: 200px;
+  z-index: 111;
+  background-color: #f8f8f8;
+}
+
+.explanded {
+  .fix-header {
+    width: calc(100% - 70px);
+    top: 0;
+    left: 70px;
+  }
+  ::ng-deep {
+    .mat-list-base {
+      padding: 8px 15px 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 1199px) {
+  .mat-drawer-container {
+    &:before {
+      position: fixed;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 111;
+    }
+  }
+  .mat-drawer.mat-drawer-side {
+    z-index: 222;
+  }
+  .mat-drawer-content {
+    margin: 0 !important;
+  }
+  .fix-header {
+    width: 100%;
+    left: 0;
+  }
+  .explanded {
+    &:before {
+      display: none;
+    }
+    .fix-header {
+      width: 100%;
+      left: 0;
+    }
+    .mat-drawer {
+      left: -350px;
+    }
+  }
+}

@@ -1,0 +1,46 @@
+<div class="login-section">
+  <form>
+    <div class="login-container">
+      <div class="login-content">
+        <mat-toolbar class="login-toolbar" color="primary">Login</mat-toolbar>
+        <mat-card>
+          <form
+            [formGroup]="loginForm"
+            #formDirective="ngForm"
+            (ngSubmit)="onSubmit(loginForm, formDirective)"
+          >
+            <mat-form-field>
+              <mat-icon matPrefix>person_outline</mat-icon>
+              <input
+                autofocus
+                type="text"
+                matInput
+                placeholder="Enter email"
+                formControlName="email"
+              />
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-icon matPrefix>lock_outline</mat-icon>
+              <input
+                type="password"
+                autocomplete="false"
+                matInput
+                placeholder="Enter password"
+                formControlName="password"
+              />
+            </mat-form-field>
+
+            <button type="submit" mat-raised-button color="primary">
+              LOGIN
+            </button>
+          </form>
+
+          <br />
+          <span>
+            <a routerLink="/auth/forgot-password">Forgot Password?</a></span>
+        </mat-card>
+      </div>
+    </div>
+  </form>
+</div>
