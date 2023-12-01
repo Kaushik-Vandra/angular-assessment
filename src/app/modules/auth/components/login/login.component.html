@@ -7,7 +7,7 @@
           <form
             [formGroup]="loginForm"
             #formDirective="ngForm"
-            (ngSubmit)="onSubmit(loginForm, formDirective)"
+            (ngSubmit)="onSubmit()"
           >
             <mat-form-field>
               <mat-icon matPrefix>person_outline</mat-icon>
@@ -17,7 +17,9 @@
                 matInput
                 placeholder="Enter email"
                 formControlName="email"
+                [errorRef]="email"
               />
+              <mat-error #email></mat-error>
             </mat-form-field>
 
             <mat-form-field>
@@ -28,17 +30,25 @@
                 matInput
                 placeholder="Enter password"
                 formControlName="password"
+                [errorRef]="password"
               />
+              <mat-error #password></mat-error>
             </mat-form-field>
 
-            <button type="submit" mat-raised-button color="primary">
-              LOGIN
+            <button
+              class="submit-btn"
+              type="submit"
+              mat-raised-button
+              color="primary"
+            >
+              Login
             </button>
           </form>
 
           <br />
           <span>
-            <a routerLink="/auth/forgot-password">Forgot Password?</a></span>
+            <a routerLink="/auth/forgot-password">Forgot Password?</a></span
+          >
         </mat-card>
       </div>
     </div>

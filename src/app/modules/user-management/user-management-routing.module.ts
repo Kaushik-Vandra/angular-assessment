@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserManagementListComponent } from './components/user-management-list/user-management-list.component';
 import { UserManagementCreateComponent } from './components/user-management-create/user-management-create.component';
-import { ROUTES } from 'src/app/common/menu';
+import { ROUTES } from 'src/app/common/helper/routes';
 
 const routes: Routes = [
   {
@@ -16,6 +16,10 @@ const routes: Routes = [
   },
   {
     path: 'create',
+    component: UserManagementCreateComponent
+  },
+  {
+    path: 'edit/:id',
     component: UserManagementCreateComponent
   }
 ];

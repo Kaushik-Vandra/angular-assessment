@@ -5,22 +5,31 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '../material.module';
+import { ErrorMessageDirective } from './directives/error-message.directive';
+import { CustomDataTableComponent } from './components/custom-data-table/custom-data-table.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     SidebarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorMessageDirective,
+    CustomDataTableComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     SidebarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ErrorMessageDirective,
+    CustomDataTableComponent
   ]
 })
 export class SharedModule { }

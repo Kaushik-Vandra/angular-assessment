@@ -1,7 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MENU_TITLE, Menu, MenuI } from 'src/app/common/menu';
-
+import { MENU_TITLE, Menu } from 'src/app/common/helper/menu';
+import { NestedTreeControl } from "@angular/cdk/tree";
+import { MatTreeNestedDataSource } from "@angular/material/tree";
+import { MenuI } from 'src/app/common/interfaces/common.interface';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -10,24 +12,21 @@ import { MENU_TITLE, Menu, MenuI } from 'src/app/common/menu';
 export class SidebarComponent implements OnInit {
 
   isExpanded: boolean = true;
-  HOME_MENU_TITLE = MENU_TITLE.DASHBOARD;
-  menu: MenuI[] = Menu;
-  isMobile: boolean = false;
-  width: number = window.innerWidth;
-  height: number = window.innerHeight;
-  mobileWidth: number = 1200;
+  nameStore?: MenuI;
+  treeControl = new NestedTreeControl<MenuI>((node) => node.subMenu);
+  dataSource = new MatTreeNestedDataSource<MenuI>();
 
   constructor(
     @Inject(DOCUMENT) private document: Document
-  ) { }
-
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.toggleSidebar();
-    });
+  ) {
+    this.dataSource.data = Menu;
   }
 
+  ngOnInit(): void { }
 
+
+  hasChild = (_: number, node: MenuI) =>
+    !!node.subMenu && node.subMenu.length > 0;
 
   toggleExpanded() {
     this.isExpanded = !this.isExpanded;
@@ -35,27 +34,7 @@ export class SidebarComponent implements OnInit {
   }
 
 
-  onWindowResize(event: any) {
-    this.width = event.target.innerWidth;
-    this.height = event.target.innerHeight;
-    this.toggleSidebar();
-  }
-
-  toggleSidebar() {
-    if (this.width && this.mobileWidth) {
-      this.isMobile = this.width < this.mobileWidth;
-      if (this.isMobile) {
-        this.isExpanded = false;
-        this.hideSidebarJS();
-      }
-    }
-  }
-
-  hideSidebarJS() {
-    var sidebarContainer: any = this.document.getElementById('sidebar-container');
-    this.document.addEventListener('click', (event: Event) => {
-      if (this.isMobile && !sidebarContainer.contains(event.target))
-        this.isExpanded = false;
-    });
+  storeName(node: MenuI) {
+    this.nameStore = node;
   }
 }

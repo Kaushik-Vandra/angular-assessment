@@ -1,4 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* snackbar custom css */
+.success-snackbar {
+  background-color: #2e7d32; /* Green */
+  color: #fff; /* White text, adjust as needed */
+}
+
+.warning-snackbar {
+  background-color: #ff9800; /* Orange */
+  color: #fff; /* White text, adjust as needed */
+}
+
+.error-snackbar {
+  background-color: #c62828; /* Red */
+  color: #fff; /* White text, adjust as needed */
+}
+
+.mat-mdc-snack-bar-container {
+  --mat-mdc-snack-bar-button-color: #fff;
+  --mdc-snackbar-container-color: transparent;
+  --mdc-snackbar-supporting-text-color: rgba(255, 255, 255, 0.87);
+}
+

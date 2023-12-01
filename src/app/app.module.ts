@@ -12,6 +12,12 @@ import { EmptyLayoutComponent } from './layout/empty-layout/empty-layout.compone
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { ERROR_MESSAGES, errorMessages } from './common/helper/error.message';
+import { ApiService } from './common/services/api.service';
+import { AuthService } from './common/services/auth.service';
+import { ToastrService } from './common/services/toastr.service';
+import { EncryptionService } from './common/services/encryption.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     {
@@ -36,6 +42,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
       useClass: AuthInterceptor,
       multi: true
     },
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: 'outline' }
+    },
+    {
+      provide: ERROR_MESSAGES,
+      useValue: errorMessages
+    },
+    ApiService,
+    AuthService,
+    ToastrService,
+    EncryptionService
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,55 +1,49 @@
-<div style="text-align: center;">
-    <a
-      routerLink="/"
-      class="big-logo"
-      *ngIf="isExpanded"
-    >
-     <span>Admin Panel</span>
-    </a>
-    <a
-      routerLink="/dashboard"
-      class="small-logo"
-      *ngIf="!isExpanded"
-    >
-    <span>Admin Panel</span>
-    </a>
-  </div>
-  
-  <div
-    class="expanded-arrow"
-    (click)="toggleExpanded()"
+<button mat-icon-button class="expanded-btn" (click)="toggleExpanded()">
+  <mat-icon class="chevron-button" [ngClass]="{ rotated: isExpanded }"
+    >chevron_left</mat-icon
+  >
+</button>
+<mat-tree
+  [dataSource]="dataSource"
+  [treeControl]="treeControl"
+  class="example-tree"
+>
+  <mat-tree-node
+    *matTreeNodeDef="let node"
+    matTreeNodeToggle
+    [routerLink]="node.route"
+    [routerLinkActive]="'mat-active'"
+    (click)="storeName(node)"
   >
     <mat-icon
-      mat-list-icon
-      class="chevron-button"
-      [ngClass]="{ rotated: isExpanded }"
+      [matTooltip]="!isExpanded ? node.name : ''"
+      [matTooltipPosition]="'left'"
+      >{{ node.icon }}</mat-icon
     >
-      chevron_right
-    </mat-icon>
-    <span class="menu-icon"><mat-icon>view_headline</mat-icon></span>
-  </div>
-  
-  <!--  -->
-  <div *ngFor="let m of menu">
-    <mat-list-item
-      [disableRipple]="true"
-      [routerLink]="m.route"
-      [routerLinkActive]="'mat-active'"
-      [routerLinkActiveOptions]="{exact: m.name == HOME_MENU_TITLE ? true : false}"
-      (click)="toggleSidebar()"
+    <span *ngIf="isExpanded" class="menu-item">{{ node.name }}</span>
+  </mat-tree-node>
+  <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
+    <div
+      class="mat-tree-node"
+      matTreeNodeToggle
+      [attr.aria-label]="'Toggle ' + node.name"
     >
       <mat-icon
-        mat-list-icon
-        [fontIcon]="m.icon"
-        [matTooltip]="!isExpanded ? m.name : ''"
+        [matTooltip]="!isExpanded ? node.name : ''"
         [matTooltipPosition]="'left'"
+        >{{ node.icon }}</mat-icon
       >
+      <span *ngIf="isExpanded" class="menu-item">{{ node.name }}</span>
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{ treeControl.isExpanded(node) ? "expand_more" : "chevron_right" }}
       </mat-icon>
-      <span
-        *ngIf="isExpanded"
-        class="menu-item"
-      >
-        {{m.name}}
-      </span>
-    </mat-list-item>
-  </div>  
+    </div>
+    <div
+      [class.example-tree-invisible]="!treeControl.isExpanded(node)"
+      role="group"
+      class="tre-outlet-content"
+    >
+      <ng-container matTreeNodeOutlet></ng-container>
+    </div>
+  </mat-nested-tree-node>
+</mat-tree>

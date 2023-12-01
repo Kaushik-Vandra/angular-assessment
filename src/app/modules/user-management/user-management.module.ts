@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { UserManagementRoutingModule } from './user-management-routing.module';
 import { UserManagementListComponent } from './components/user-management-list/user-management-list.component';
 import { UserManagementCreateComponent } from './components/user-management-create/user-management-create.component';
+import { MaterialModule } from 'src/app/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +15,11 @@ import { UserManagementCreateComponent } from './components/user-management-crea
   ],
   imports: [
     CommonModule,
-    UserManagementRoutingModule
+    UserManagementRoutingModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class UserManagementModule { }

@@ -5,6 +5,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { UserManagementModule } from './modules/user-management/user-management.module';
+import { CmsModule } from './modules/cms/cms.module';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path: 'user-management',
         loadChildren: () => UserManagementModule
+      },
+      {
+        path: 'cms',
+        loadChildren: () => CmsModule
       }
     ]
   },

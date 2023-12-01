@@ -1,1 +1,11 @@
-<p>user-management-list works!</p>
+<custom-data-table
+  [tableName]="'User Managemen'"
+  [dataset]="data"
+  [totalRows]="dataCount"
+  [columns]="displayedColumns"
+  [isActionColumn]="true"
+  [actionColumn]="tableActions"
+  [isMultiSelection]="true"
+  (changePage)="handlePageEvent($event)"
+>
+</custom-data-table>
