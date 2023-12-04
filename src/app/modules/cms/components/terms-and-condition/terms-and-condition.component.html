@@ -1,11 +1,21 @@
 <div class="wrapper">
-  <form>
+  <form [formGroup]="form">
     <div class="btn-section">
       <h2>Terms and Condition</h2>
-      <button class="submit-btn" mat-raised-button color="primary">
+      <button
+        class="submit-btn"
+        mat-raised-button
+        color="primary"
+        (click)="onSubmit()"
+      >
         Update
       </button>
     </div>
-    <ckeditor [editor]="Editor"></ckeditor>
+    <ckeditor
+      [editor]="Editor"
+      [errorRef]="terms_and_condition"
+      formControlName="terms_and_condition"
+    ></ckeditor>
+    <mat-error #terms_and_condition></mat-error>
   </form>
 </div>

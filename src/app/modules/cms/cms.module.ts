@@ -6,6 +6,8 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { TermsAndConditionComponent } from './components/terms-and-condition/terms-and-condition.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { MaterialModule } from 'src/app/material.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
@@ -18,7 +20,10 @@ import { MaterialModule } from 'src/app/material.module';
     CommonModule,
     CmsRoutingModule,
     CKEditorModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class CmsModule { }
