@@ -1,11 +1,39 @@
-<custom-data-table
-  [tableName]="'User Managemen'"
-  [dataset]="data"
-  [totalRows]="dataCount"
-  [columns]="displayedColumns"
-  [isActionColumn]="true"
-  [actionColumn]="tableActions"
-  [isMultiSelection]="true"
-  (changePage)="handlePageEvent($event)"
->
-</custom-data-table>
+<div class="mat-elevation-z8 div-table data-table">
+  <div class="table-header">
+    <h2>User Management</h2>
+    <div class="wrap-group">
+      <div class="serach-group">
+        <div class="search-icon" [ngClass]="{ searchOpen: shouldShow }">
+          <input class="search-input-box" matInput type="search" [formControl]="searchBox" />
+        </div>
+        <button
+          class="search-btn"
+          (click)="shouldShow = !shouldShow"
+          [ngClass]="{ searchOpen: shouldShow, searchClose: !shouldShow }"
+        >
+          <mat-icon class="search-search-icon">search</mat-icon>
+          <mat-icon class="search-close-icon" (click)="searchBox.reset()">close</mat-icon>
+        </button>
+      </div>
+
+      <a
+        class="submit-btn"
+        mat-raised-button
+        color="primary"
+        [routerLink]="addUserRoute"
+      >
+        Add User
+      </a>
+    </div>
+  </div>
+  <custom-data-table
+    [dataset]="data"
+    [totalRows]="dataCount"
+    [columns]="displayedColumns"
+    [isActionColumn]="true"
+    [actionColumn]="tableActions"
+    [isMultiSelection]="true"
+    (changePage)="handlePageEvent($event)"
+  >
+  </custom-data-table>
+</div>

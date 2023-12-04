@@ -17,7 +17,6 @@ export class CustomDataTableComponent implements OnInit, OnChanges {
   @ViewChild(MatSort, { static: true }) public sort!: MatSort;
 
   @Input() public isMultiSelection: boolean | undefined;
-  @Input() public tableName: string = "";
   @Input() public columns: Array<ITableColumn> | any;
   @Input() public totalRows: number | undefined;
   @Input() public isActionColumn: boolean | undefined;
@@ -37,8 +36,6 @@ export class CustomDataTableComponent implements OnInit, OnChanges {
     [TableActionType.DELETE]: false,
   };
 
-  shouldShow: boolean = false;
-  searchBox: FormControl = new FormControl('');
   isChecked: boolean = false;
   dateValue: boolean | undefined;
   selectedDate: string = '';

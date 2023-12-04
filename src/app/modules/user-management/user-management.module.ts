@@ -7,6 +7,7 @@ import { UserManagementCreateComponent } from './components/user-management-crea
 import { MaterialModule } from 'src/app/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { NgxMatIntlTelInputComponent } from 'ngx-mat-intl-tel-input';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxMatIntlTelInputComponent,
     SharedModule
   ]
 })

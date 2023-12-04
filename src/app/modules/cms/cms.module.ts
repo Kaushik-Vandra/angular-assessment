@@ -4,6 +4,9 @@ import { CommonModule } from '@angular/common';
 import { CmsRoutingModule } from './cms-routing.module';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TermsAndConditionComponent } from './components/terms-and-condition/terms-and-condition.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { MaterialModule } from 'src/app/material.module';
+
 
 
 @NgModule({
@@ -13,7 +16,9 @@ import { TermsAndConditionComponent } from './components/terms-and-condition/ter
   ],
   imports: [
     CommonModule,
-    CmsRoutingModule
+    CmsRoutingModule,
+    CKEditorModule,
+    MaterialModule
   ]
 })
 export class CmsModule { }

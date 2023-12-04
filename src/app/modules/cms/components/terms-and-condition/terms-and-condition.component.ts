@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-terms-and-condition',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./terms-and-condition.component.scss']
 })
 export class TermsAndConditionComponent {
-
+  public Editor = ClassicEditor;
 }

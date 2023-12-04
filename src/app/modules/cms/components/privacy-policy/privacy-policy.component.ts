@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-privacy-policy',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class PrivacyPolicyComponent {
 
+  public Editor = ClassicEditor;
+  
+  constructor() { }
 }

@@ -1,1 +1,64 @@
-<p>user-management-create works!</p>
+<div class="wrapper">
+  <div class="btn-section">
+    <h2>Add User</h2>
+  </div>
+  <form [formGroup]="userForm">
+    <div class="form-fields">
+      <mat-form-field class="left-field">
+        <mat-label>First Name</mat-label>
+        <input
+          autofocus
+          type="text"
+          matInput
+          placeholder="First Name"
+          [errorRef]="first_name"
+          formControlName="first_name"
+        />
+        <mat-error #first_name></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="right-field">
+        <mat-label>Last Name</mat-label>
+        <input
+          autofocus
+          type="text"
+          matInput
+          placeholder="Last Name"
+          [errorRef]="last_name"
+          formControlName="last_name"
+        />
+        <mat-error #last_name></mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-fields">
+      <mat-form-field class="left-field">
+        <mat-label>Email</mat-label>
+        <input
+          autofocus
+          type="email"
+          matInput
+          placeholder="Email"
+          [errorRef]="email"
+          formControlName="email"
+        />
+        <mat-error #email></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="right-field">
+        <mat-label>Phone</mat-label>
+        <ngx-mat-intl-tel-input
+          [preferredCountries]="['gb', 'in', 'it']"
+          [errorRef]="phone"
+          formControlName="phone"
+        >
+        </ngx-mat-intl-tel-input>
+        <mat-error #phone></mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+  <div class="form-footer">
+    <button class="submit-btn" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+    <a class="back-btn" mat-raised-button [routerLink]="usersListRoute">Back</a>
+  </div>
+</div>
