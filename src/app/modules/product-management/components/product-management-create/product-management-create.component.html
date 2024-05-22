@@ -1,0 +1,69 @@
+<div class="wrapper">
+    <div class="btn-section">
+      <h2>Add Product</h2>
+    </div>
+    <form [formGroup]="productForm">
+      <div class="form-fields">
+        <mat-form-field class="left-field">
+          <mat-label>Product Name</mat-label>
+          <input
+            autofocus
+            type="text"
+            matInput
+            placeholder="Product Name"
+            [errorRef]="productName"
+            formControlName="productName"
+          />
+          <mat-error #productName></mat-error>
+        </mat-form-field>
+        <!-- <app-input-component
+            label="Last Name"
+            class="right-field"
+            [name]="last_name"
+            type="text"
+            placeholder="Last Name"
+          >
+        </app-input-component> -->
+        <mat-form-field class="right-field">
+          <mat-label>Product Points</mat-label>
+          <input
+            autofocus
+            type="number"
+            matInput
+            placeholder="Product Points"
+            [errorRef]="productPoints"
+            formControlName="productPoints"
+          />
+          <mat-error #productPoints></mat-error>
+        </mat-form-field>
+  
+      </div>
+        
+  
+      <div class="form-fields">
+        
+        <mat-form-field class="full-field">
+          <mat-label>Product Description</mat-label>
+          <textarea 
+          matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            cdkAutosizeMinRows="5"
+            cdkAutosizeMaxRows="10"
+            placeholder="Product Description"
+            [errorRef]="productDescription"
+            formControlName="productDescription"
+            ></textarea>
+          <mat-error #productDescription></mat-error>
+        </mat-form-field>
+      </div>
+      <!-- <div class="form-fields">
+        <app-file-upload (fileSelected)="onFileSelected($event)"></app-file-upload>
+      </div> -->
+    </form>
+    <div class="form-footer">
+      <button class="submit-btn" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+      <a class="back-btn" mat-raised-button [routerLink]="productListRoute">Back</a>
+    </div>
+  </div>
+  

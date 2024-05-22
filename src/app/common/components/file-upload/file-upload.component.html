@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Upload File</mat-label>
+    <input type="file" (change)="onFileSelected($event)" />
+  </mat-form-field>
+  <mat-error *ngIf="fileError">{{ fileError }}</mat-error>
+  

@@ -1,18 +1,31 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { ITableActionConfig, ITableColumn, PAGE, TableActionType } from 'src/app/common/interfaces/table.interface';
+import {
+  ITableActionConfig,
+  ITableColumn,
+  PAGE,
+  TableActionType,
+} from 'src/app/common/interfaces/table.interface';
 
 @Component({
   selector: 'custom-data-table',
   templateUrl: './custom-data-table.component.html',
-  styleUrls: ['./custom-data-table.component.scss']
+  styleUrls: ['./custom-data-table.component.scss'],
 })
 export class CustomDataTableComponent implements OnInit, OnChanges {
-
   @ViewChild(MatPaginator) public paginator!: MatPaginator;
   @ViewChild(MatSort, { static: true }) public sort!: MatSort;
 
@@ -44,19 +57,18 @@ export class CustomDataTableComponent implements OnInit, OnChanges {
   pageSizeOptions = PAGE.pageSizeOptions;
   pageIndex: number = 0;
 
-  constructor(
-    private router: Router,
-  ) {
-  }
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     if (this.isMultiSelection) {
       this.displayedColumns.push('select');
     }
 
-    this.displayedColumns = this.displayedColumns?.concat(this.columns?.map((x: any) => {
-      return x.prop
-    }));
+    this.displayedColumns = this.displayedColumns?.concat(
+      this.columns?.map((x: any) => {
+        return x.prop;
+      })
+    );
 
     if (this.actionColumn) {
       this.displayedColumns.push('action');
@@ -74,9 +86,9 @@ export class CustomDataTableComponent implements OnInit, OnChanges {
   }
 
   navigate(isRedirected: boolean, id: string, route: string) {
-    console.log("isRedirected", isRedirected);
-    console.log("id", id);
-    console.log("route", route);
+    console.log('isRedirected', isRedirected);
+    console.log('id', id);
+    console.log('route', route);
   }
 
   isAllSelected() {
@@ -100,7 +112,11 @@ export class CustomDataTableComponent implements OnInit, OnChanges {
   handlePageEvent(e: PageEvent) {
     this.pageIndex = this.pageLimit !== e.pageSize ? 0 : e.pageIndex;
     this.pageLimit = e.pageSize;
-    this.changePage.emit(e)
+    this.changePage.emit(e);
   }
 
+  handleDeleteAction(element: any, event: MouseEvent) {
+    event.stopPropagation();
+    console.log('element', element);
+  }
 }

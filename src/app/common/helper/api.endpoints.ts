@@ -1,4 +1,5 @@
 export const API_END_POINTS = {
-    login : 'auth/login',
-    
-}
+  login: 'admin/login',
+  dashboardCount: 'admin/dashboard/count',
+  products: 'admin/product',
+};

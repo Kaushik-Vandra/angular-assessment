@@ -3,20 +3,19 @@ import { AuthDataI, UserI } from 'src/app/common/interfaces/auth.interface';
 import { EncryptionService } from './encryption.service';
 import { Router } from '@angular/router';
 
-const AUTH = "authDetail";
-const ACCESS_TOKEN = "token";
+export const AUTH = 'authDetail';
+export const ACCESS_TOKEN = 'token';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
   public data: AuthDataI = new AuthDataI();
 
   constructor(
     public encryptionService: EncryptionService,
     private router: Router
-  ) { }
+  ) {}
 
   getToken() {
     if (localStorage.getItem(ACCESS_TOKEN)) {
@@ -24,22 +23,24 @@ export class AuthService {
     } else if (this.getAuthDetail()) {
       return this.getAuthDetail()?.accessToken;
     } else {
-      return "";
+      return '';
     }
   }
 
   getAuthDetail(): UserI {
     let authData!: UserI;
     if (localStorage.getItem(AUTH) != null) {
-      let decrypt = this.encryptionService.decrypt(localStorage.getItem(AUTH) || '{}');
+      let decrypt = this.encryptionService.decrypt(
+        localStorage.getItem(AUTH) || '{}'
+      );
       authData = JSON.parse(decrypt);
     }
     return authData;
   }
 
   setAuth(data: any) {
-    if (data.accessToken) {
-      const token = data.accessToken;
+    if (data.authToken) {
+      const token = data.authToken;
       localStorage.removeItem(ACCESS_TOKEN);
       localStorage.setItem(ACCESS_TOKEN, token);
     }
@@ -49,15 +50,19 @@ export class AuthService {
 
     localStorage.removeItem(AUTH);
     localStorage.setItem(AUTH, encrypt);
-    
-    let decrypt = this.encryptionService.decrypt(localStorage.getItem(AUTH) || '{}');
+
+    let decrypt = this.encryptionService.decrypt(
+      localStorage.getItem(AUTH) || '{}'
+    );
     this.data = JSON.parse(decrypt);
     return this.data;
   }
 
   isAuthenticated() {
     if (localStorage.getItem(AUTH) != null) {
-      let decrypt = this.encryptionService.decrypt(localStorage.getItem(AUTH) || '{}');
+      let decrypt = this.encryptionService.decrypt(
+        localStorage.getItem(AUTH) || '{}'
+      );
       this.data = JSON.parse(decrypt);
     }
     return this.isLoggedIn();
@@ -68,7 +73,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('token');
+    localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(AUTH);
     this.router.navigate(['/']);
   }

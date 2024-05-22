@@ -158,7 +158,7 @@
         <button
           mat-icon-button
           [matTooltip]="'Delete'"
-          (click)="$event.stopPropagation()"
+          (click)="handleDeleteAction(element, $event)"
           *ngIf="enableActions[TABLE_ACTION_TYPE.DELETE]"
         >
           <mat-icon>delete</mat-icon>
