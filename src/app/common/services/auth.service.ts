@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AuthDataI, UserI } from 'src/app/common/interfaces/auth.interface';
 import { EncryptionService } from './encryption.service';
 import { Router } from '@angular/router';
+import { ROUTES } from '../helper/routes';
 
 export const AUTH = 'authDetail';
 export const ACCESS_TOKEN = 'token';
@@ -75,6 +76,6 @@ export class AuthService {
   logout() {
     localStorage.removeItem(ACCESS_TOKEN);
     localStorage.removeItem(AUTH);
-    this.router.navigate(['/']);
+    this.router.navigate([ROUTES.LOGIN]);
   }
 }

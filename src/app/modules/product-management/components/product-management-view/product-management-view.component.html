@@ -1,0 +1,33 @@
+<mat-card *ngIf="productInfo">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ productInfo.productName }}</mat-card-title>
+  </mat-card-header>
+  <img
+    *ngIf="productInfo.productImages.length > 0"
+    mat-card-image
+    [src]="IMG_BASE_URL + productInfo.productImages[0]"
+    onerror="this.src='../../../../assets/error.png'"
+    height="100px"
+    width="100px"
+    alt="Product image"
+  />
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item
+        >Status: {{ productInfo.productStatus ? "Available" : "Not Available" }}
+      </mat-list-item>
+      <mat-list-item class="description"
+        >Description:
+        <div [innerHTML]="productInfo.productDescription"></div>
+      </mat-list-item>
+      <mat-list-item>Points: {{ productInfo.productPoints }}</mat-list-item>
+      <mat-list-item
+        >Created Date: {{ productInfo.createdDate | date }}</mat-list-item
+      >
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button (click)="goBack()">BACK</button>
+  </mat-card-actions>
+</mat-card>

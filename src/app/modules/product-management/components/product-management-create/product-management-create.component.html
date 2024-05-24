@@ -1,41 +1,29 @@
 <div class="wrapper">
     <div class="btn-section">
-      <h2>Add Product</h2>
+      <h2>{{formTitle}}</h2>
     </div>
     <form [formGroup]="productForm">
       <div class="form-fields">
-        <mat-form-field class="left-field">
-          <mat-label>Product Name</mat-label>
-          <input
-            autofocus
+        <app-input-component
+            label="Product Name"
+            [class]="'left-field'"
+            [name]="'productName'"
+            [controlName]="'productName'"
+            [group]="productForm"
             type="text"
-            matInput
             placeholder="Product Name"
-            [errorRef]="productName"
-            formControlName="productName"
-          />
-          <mat-error #productName></mat-error>
-        </mat-form-field>
-        <!-- <app-input-component
-            label="Last Name"
-            class="right-field"
-            [name]="last_name"
-            type="text"
-            placeholder="Last Name"
           >
-        </app-input-component> -->
-        <mat-form-field class="right-field">
-          <mat-label>Product Points</mat-label>
-          <input
-            autofocus
+        </app-input-component>
+        <app-input-component
+            label="Product Points"
+            [class]="'right-field'"
+            [name]="'productPoints'"
+            [controlName]="'productPoints'"
+            [group]="productForm"
             type="number"
-            matInput
             placeholder="Product Points"
-            [errorRef]="productPoints"
-            formControlName="productPoints"
-          />
-          <mat-error #productPoints></mat-error>
-        </mat-form-field>
+          >
+        </app-input-component>
   
       </div>
         
@@ -52,14 +40,18 @@
             cdkAutosizeMaxRows="10"
             placeholder="Product Description"
             [errorRef]="productDescription"
+            name="productDescription"
             formControlName="productDescription"
             ></textarea>
           <mat-error #productDescription></mat-error>
         </mat-form-field>
       </div>
-      <!-- <div class="form-fields">
-        <app-file-upload (fileSelected)="onFileSelected($event)"></app-file-upload>
-      </div> -->
+      <div class="form-fields" *ngIf="productId">
+        <mat-slide-toggle formControlName="productStatus">Product Status</mat-slide-toggle>
+      </div>
+      <div class="form-fields">
+        <app-file-upload (fileSelected)="onFileSelected($event)" [productForm]="productForm" [imgUrl] = "imgUrl"></app-file-upload>
+      </div>
     </form>
     <div class="form-footer">
       <button class="submit-btn" mat-raised-button color="primary" (click)="onSubmit()">Submit</button>

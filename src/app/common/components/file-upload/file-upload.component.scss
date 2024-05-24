@@ -1,0 +1,10 @@
+.custom-file-input {
+    display: flex;
+    align-items: center;
+  }
+  .custom-file-input input[type="file"] {
+    display: none;
+  }
+  .custom-file-input button {
+    margin-right: 10px;
+  }

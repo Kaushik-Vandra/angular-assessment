@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { debounceTime } from 'rxjs';
+import { ConfirmDialogComponent } from 'src/app/common/components/confirm-dialog/confirm-dialog.component';
 import { API_END_POINTS } from 'src/app/common/helper/api.endpoints';
 import { ROUTES } from 'src/app/common/helper/routes';
 import { RequestI, ResponseI } from 'src/app/common/interfaces/api.interface';
@@ -27,25 +30,50 @@ export class ProductManagementListComponent implements OnInit {
   tableActions: ITableActionConfig[] = [
     { type: TableActionType.VIEW, enable: true },
     { type: TableActionType.EDIT, enable: true },
-    { type: TableActionType.DELETE, enable: true },
-    // { type: TableActionType.status, enable: true },
+    // { type: TableActionType.DELETE, enable: true },
+    { type: TableActionType.status, enable: true },
   ];
   searchBox: FormControl = new FormControl('');
   addProductRoute: string = '/' + ROUTES.CREATE_PRODUCT_MANAGEMENT;
 
-  constructor(private apisService: ApiService) {}
+  constructor(
+    private apisService: ApiService,
+    private router: Router,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.getProductList();
     this.initializeColumns();
+    this.getSearchResult();
   }
 
   handlePageEvent(e: PageEvent) {
-    console.log('e', e);
-
     this.pageIndex = this.pageLimit !== e.pageSize ? 0 : e.pageIndex;
     this.pageLimit = e.pageSize;
     this.getProductList();
+  }
+
+  handleActions(element: any) {
+    switch (element.from) {
+      case 'view':
+        this.router.navigate([
+          ROUTES.VIEW_PRODUCT_MANAGEMENT,
+          element.element._id,
+        ]);
+        break;
+      case 'edit':
+        this.router.navigate([
+          ROUTES.EDIT_PRODUCT_MANAGEMENT,
+          element.element._id,
+        ]);
+        break;
+      case 'status':
+        this.handleStatusChange(element.element._id);
+        break;
+      default:
+        break;
+    }
   }
 
   /**
@@ -55,12 +83,17 @@ export class ProductManagementListComponent implements OnInit {
   getSearchResult() {
     this.searchBox.valueChanges.pipe(debounceTime(500)).subscribe(() => {
       this.pageIndex = 0;
-      if (this.searchBox.value?.trim() || !this.searchBox.value) {
+      if (this.searchBox.value?.trim()) {
+        this.getProductList();
         console.log('this.searchBox.value', this.searchBox.value);
-
-        // this.getSubAdmins();
       }
     });
+  }
+
+  onSearchClose() {
+    this.searchBox.reset();
+    this.pageIndex = 0;
+    this.getProductList();
   }
 
   /**
@@ -73,29 +106,22 @@ export class ProductManagementListComponent implements OnInit {
         title: 'Product Name',
         prop: 'productName',
         isTitle: true,
-        isRedirect: true,
-        redirectURL: '/',
-        redirectKey: 'id',
       },
       {
         title: 'Description',
         prop: 'productDescription',
-        isNormal: true,
+        isHtmlContent: true,
       },
       {
         title: 'Points',
         prop: 'productPoints',
         isNormal: true,
       },
-      // {
-      //   title: 'Image',
-      //   prop: 'productStatus',
-      //   isNormal: true,
-      // },
       {
         title: 'Status',
         prop: 'productStatus',
-        isNormal: true,
+        isRedirect: true,
+        isStatus: true,
       },
     ];
   }
@@ -111,13 +137,38 @@ export class ProductManagementListComponent implements OnInit {
     };
     this.apisService.post(payload).subscribe({
       next: (res: ResponseI) => {
-        console.log('res: ', res);
         this.data = res.data.adminProductList;
         this.dataCount = res.data.total_records;
       },
-      error: (error) => {
-        console.log('error: ', error);
+      error: (_error) => {},
+    });
+  }
+
+  handleStatusChange(id: string) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+      data: {
+        message: 'Are you sure you want to change the status of product?',
       },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        // Handle status change here
+        this.onConfirmStatusChange(id);
+      }
+    });
+  }
+
+  onConfirmStatusChange(id: string) {
+    const payload: RequestI = {
+      path: API_END_POINTS.products + `/activeInActive/${id}`,
+    };
+    this.apisService.get(payload).subscribe({
+      next: (res: ResponseI) => {
+        this.getProductList();
+      },
+      error: (_error) => {},
     });
   }
 }

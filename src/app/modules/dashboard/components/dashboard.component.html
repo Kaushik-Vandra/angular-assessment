@@ -1,17 +1,17 @@
 <div class="dashboard-div">
   <div class="card-main-box">
-    <mat-card class="card-mat" *ngIf="productCount">
+    <mat-card class="card-mat" *ngIf="productCount" [routerLink]="productList">
       <mat-card-title-group>
         <mat-card-title>Total Products</mat-card-title>
       </mat-card-title-group>
       <mat-card-content>
         <div class="box-content">
           <h2>{{productCount}}</h2>
-          <i>
+          <!-- <i>
             <button color="primary" mat-icon-button>
               <mat-icon>visibility</mat-icon>
             </button>
-          </i>
+          </i> -->
         </div>
       </mat-card-content>
     </mat-card>

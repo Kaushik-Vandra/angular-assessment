@@ -38,6 +38,7 @@ export class CustomDataTableComponent implements OnInit, OnChanges {
 
   @Output() changePage: EventEmitter<any> = new EventEmitter();
   @Output() searchEvent: EventEmitter<any> = new EventEmitter();
+  @Output() actionEvent: EventEmitter<any> = new EventEmitter();
 
   public dataSource!: any;
   public displayedColumns: any[] = [];
@@ -115,8 +116,8 @@ export class CustomDataTableComponent implements OnInit, OnChanges {
     this.changePage.emit(e);
   }
 
-  handleDeleteAction(element: any, event: MouseEvent) {
+  handleActions(element: any, event: MouseEvent, from: string) {
     event.stopPropagation();
-    console.log('element', element);
+    this.actionEvent.emit({ element, from });
   }
 }

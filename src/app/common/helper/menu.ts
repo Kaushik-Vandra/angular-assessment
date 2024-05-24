@@ -3,11 +3,7 @@ import { ROUTES } from './routes';
 
 export const enum MENU_TITLE {
   DASHBOARD = 'Dashboard',
-  USER_MANAGEMENT = 'User Management',
   PRODUCT_MANAGEMENT = 'Product Management',
-  CMS = 'CMS',
-  PRIVACY_POLICY = 'Privacy Policy',
-  TERMS_AND_CONDITION = 'Terms And Condition',
 }
 
 export const Menu: MenuI[] = [
@@ -19,28 +15,6 @@ export const Menu: MenuI[] = [
   {
     name: MENU_TITLE.PRODUCT_MANAGEMENT,
     route: ROUTES.PRODUCT_MANAGEMENT,
-    icon: 'people',
+    icon: 'inventory',
   },
-  {
-    name: MENU_TITLE.USER_MANAGEMENT,
-    route: ROUTES.USER_MANAGEMENT,
-    icon: 'people',
-  },
-  // {
-  //   "name": MENU_TITLE.CMS,
-  //   "route": ROUTES.USER_MANAGEMENT,
-  //   "icon": "difference",
-  //   "subMenu": [
-  //     {
-  //       "name": MENU_TITLE.PRIVACY_POLICY,
-  //       "route": ROUTES.PRIVACY_POLICY,
-  //       "icon": "policy",
-  //     },
-  //     {
-  //       name : MENU_TITLE.TERMS_AND_CONDITION,
-  //       route : ROUTES.TERMS_AND_CONDITION,
-  //       icon : "toc"
-  //     }
-  //   ]
-  // },
 ];

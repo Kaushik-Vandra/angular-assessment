@@ -4,13 +4,12 @@ import { DefaultLayoutComponent } from './layout/default-layout/default-layout.c
 import { AuthModule } from './modules/auth/auth.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { UserManagementModule } from './modules/user-management/user-management.module';
 import { ProductManagementModule } from './modules/product-management/product-management.module';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth/login',
+    redirectTo: '/dashboard',
     pathMatch: 'full',
   },
   {
@@ -29,10 +28,6 @@ const routes: Routes = [
       {
         path: 'product-management',
         loadChildren: () => ProductManagementModule,
-      },
-      {
-        path: 'user-management',
-        loadChildren: () => UserManagementModule,
       },
     ],
   },

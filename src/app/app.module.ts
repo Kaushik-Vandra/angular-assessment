@@ -24,7 +24,7 @@ import { EncryptionService } from './common/services/encryption.service';
     AppComponent,
     DefaultLayoutComponent,
     AuthLayoutComponent,
-    EmptyLayoutComponent
+    EmptyLayoutComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,22 +40,22 @@ import { EncryptionService } from './common/services/encryption.service';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
-      useValue: { appearance: 'outline' }
+      useValue: { appearance: 'outline' },
     },
     {
       provide: ERROR_MESSAGES,
-      useValue: errorMessages
+      useValue: errorMessages,
     },
     ApiService,
     AuthService,
     ToastrService,
-    EncryptionService
+    EncryptionService,
   ],
   bootstrap: [AppComponent],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule { }
+export class AppModule {}

@@ -12,7 +12,7 @@
             [ngClass]="{ searchOpen: shouldShow, searchClose: !shouldShow }"
           >
             <mat-icon class="search-search-icon">search</mat-icon>
-            <mat-icon class="search-close-icon" (click)="searchBox.reset()">close</mat-icon>
+            <mat-icon class="search-close-icon" (click)="onSearchClose()">close</mat-icon>
           </button>
         </div>
   
@@ -34,6 +34,7 @@
       [actionColumn]="tableActions"
       [isMultiSelection]="true"
       (changePage)="handlePageEvent($event)"
+      (actionEvent)="handleActions($event)"
     >
     </custom-data-table>
   </div>

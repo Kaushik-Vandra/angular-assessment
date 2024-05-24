@@ -8,12 +8,18 @@ import { MaterialModule } from 'src/app/material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputComponentComponent } from 'src/app/common/components/input-component/input-component.component';
+import { ProductManagementViewComponent } from './components/product-management-view/product-management-view.component';
+import { ConfirmDialogComponent } from 'src/app/common/components/confirm-dialog/confirm-dialog.component';
+import { FileUploadComponent } from 'src/app/common/components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
     ProductManagementListComponent,
     ProductManagementCreateComponent,
     InputComponentComponent,
+    ProductManagementViewComponent,
+    ConfirmDialogComponent,
+    FileUploadComponent,
   ],
   imports: [
     CommonModule,

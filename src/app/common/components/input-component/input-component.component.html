@@ -1,12 +1,14 @@
-<mat-form-field [class]="class">
+<form [formGroup]="group">
+  <mat-form-field [class]="class">
     <mat-label>{{label}}</mat-label>
-    <!-- <input
+    <input
       autofocus
       [type]="type"
       matInput
       [placeholder]="placeholder"
       [errorRef]="name"
-      [formControlName]="name"
-    /> -->
+      [formControlName]="controlName"
+    />
     <mat-error #name></mat-error>
   </mat-form-field>
+</form>

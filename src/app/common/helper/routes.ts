@@ -6,11 +6,6 @@ export const ROUTES = {
   DASHBOARD: 'dashboard',
   PRODUCT_MANAGEMENT: 'product-management/list',
   CREATE_PRODUCT_MANAGEMENT: 'product-management/create',
+  VIEW_PRODUCT_MANAGEMENT: 'product-management/view/',
   EDIT_PRODUCT_MANAGEMENT: 'product-management/edit/',
-  USER_MANAGEMENT: 'user-management/list',
-  CREATE_USER_MANAGEMENT: 'user-management/create',
-  EDIT_USER_MANAGEMENT: 'user-management/edit/',
-
-  PRIVACY_POLICY: 'cms/privacy-policy',
-  TERMS_AND_CONDITION: 'cms/terms-and-condition',
 };

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { API_END_POINTS } from 'src/app/common/helper/api.endpoints';
+import { ROUTES } from 'src/app/common/helper/routes';
 import { RequestI, ResponseI } from 'src/app/common/interfaces/api.interface';
 import { ApiService } from 'src/app/common/services/api.service';
 
@@ -10,6 +11,7 @@ import { ApiService } from 'src/app/common/services/api.service';
 })
 export class DashboardComponent implements OnInit {
   productCount: number = 0;
+  productList: string = '/' + ROUTES.PRODUCT_MANAGEMENT;
 
   constructor(private apiService: ApiService) {}
 
@@ -26,9 +28,7 @@ export class DashboardComponent implements OnInit {
       next: (res: ResponseI) => {
         this.productCount = res.data.productCount;
       },
-      error: (error) => {
-        console.log(error);
-      },
+      error: (_error) => {},
     });
   }
 }

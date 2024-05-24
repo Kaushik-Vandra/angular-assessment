@@ -1,6 +1,13 @@
-<mat-form-field>
-    <mat-label>Upload File</mat-label>
-    <input type="file" (change)="onFileSelected($event)" />
-  </mat-form-field>
+<form [formGroup]="productForm">
+    <mat-label class="custom-file-input">Upload File</mat-label>
+    <input type="file" id="fileInput" (change)="onFileSelected($event)" hidden />
+    <button type="button" (click)="fileInput.click()">Select File</button>
   <mat-error *ngIf="fileError">{{ fileError }}</mat-error>
-  
+    <div *ngIf="imgUrl && !urls.length">
+      <img [src]="imgUrl" alt="product" width="100px" onerror="this.src='../../../../assets/error.png'" height="100px">
+    </div>
+    <div *ngFor="let imageUrl of urls; let i = index">
+      <img [src]="imageUrl" alt="product" width="100px" onerror="this.src='../../../../assets/error.png'" height="100px">
+      <!-- <button type="button" (click)="removeImage(i)">Remove Image</button> -->
+    </div>
+</form>
