@@ -101,6 +101,7 @@
           <td
             mat-cell
             *matCellDef="let element"
+            [matTooltip]="'Change status'"
             [ngStyle]="{ cursor: column.isRedirect ? 'pointer' : '' }"
             (click)="handleActions(element, $event, 'status')"
           >
