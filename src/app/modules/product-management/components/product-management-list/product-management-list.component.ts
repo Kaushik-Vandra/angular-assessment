@@ -85,7 +85,6 @@ export class ProductManagementListComponent implements OnInit {
       this.pageIndex = 0;
       if (this.searchBox.value?.trim()) {
         this.getProductList();
-        console.log('this.searchBox.value', this.searchBox.value);
       }
     });
   }

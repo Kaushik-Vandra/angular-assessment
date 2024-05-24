@@ -64,7 +64,6 @@ export class ProductManagementCreateComponent {
         });
         this.productImages = [productImages[0]];
         this.imgUrl = this.baseImgUrl + productImages[0];
-        console.log('this.imgUrl: ', this.imgUrl);
       },
       error: (_error) => {},
     });
@@ -108,7 +107,6 @@ export class ProductManagementCreateComponent {
   }
 
   onSubmit() {
-    console.log('pr: ', this.productImages);
     this.productForm.markAllAsTouched();
     if (this.productForm.invalid) {
       return;
